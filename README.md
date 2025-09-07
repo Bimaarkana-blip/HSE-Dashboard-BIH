@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HSE-Dashboard-BIH
 
-## Getting Started
+Dashboard internal untuk pencatatan dan rekap aset HSE (APAR, Hidran, Detector, Sprinkler, Kotak P3K) di BIH.  
+Stack: **Next.js 15**, **React 19**, **TailwindCSS**, **Supabase** (Auth + DB), **XLSX** (import/ekspor).
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Fitur
+- Input aset via form (dengan opsi “lainnya” pada beberapa field).
+- Rekap otomatis di dashboard:
+  - **APAR**: Total dari kolom `nama = "APAR"`, rinci **Powder/CO2/Water Mist/Wet Chemical** dari kolom `jenis`.
+  - **Hidran**: Indoor/Outdoor dari kolom `posisi`.
+  - **Detector**: Smoke/Heat/Beam dari `jenis` atau `keterangan`.
+- Import dari **Excel** (`.xlsx/.xls`) dan **Ekspor** ke Excel.
+- Filter/pencarian aset.
+- Autentikasi via Supabase.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Prasyarat
+- **Node.js 18+** (disarankan LTS terbaru)
+- Akun **Supabase** (Database + Auth)
+- (Opsional) Akun **Vercel** untuk deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Konfigurasi Environment
 
-To learn more about Next.js, take a look at the following resources:
+Buat file `.env.local` di root proyek:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+# Supabase — client (browser)
+NEXT_PUBLIC_SUPABASE_URL="https://<project-id>.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="<anon-key>"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# (opsional) untuk server-side service role — hanya bila diperlukan
+# SUPABASE_SERVICE_ROLE_KEY="<service-role-key>"
