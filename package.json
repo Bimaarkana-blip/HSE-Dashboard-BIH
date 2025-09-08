@@ -2,13 +2,14 @@
   "name": "hse-bih-dashboard",
   "version": "0.1.0",
   "private": true,
+{
   "scripts": {
-    "dev": "next dev --turbo",
-    "dev:lan": "next dev -H 0.0.0.0 -p 3000 --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."
-  },
+  }
+}
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.57.0",
